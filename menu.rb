@@ -20,6 +20,8 @@ class Menu
 
 end
 
+
+
 # menu = Menu.new
 # menu.add_ingredient("tomato", 5.00)
 # menu.add_ingredient("cheese", 7.50)
