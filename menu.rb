@@ -11,10 +11,11 @@ class Menu
   end
 
   def display_ingredients
-    puts "Ingredients list"
+    puts "Ingredient price list"
     puts "_________________"
     
     @ingredients.each {|item| puts item}
+    puts
     return nil
   end
 
