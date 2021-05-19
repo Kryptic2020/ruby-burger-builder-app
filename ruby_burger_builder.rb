@@ -1,5 +1,7 @@
 require "tty-prompt"
 require "tty-box"
+require "colorize"
+require 'colorized_string'
 
 
 
@@ -7,10 +9,7 @@ prompt = TTY::Prompt.new
 require_relative './burger_builder_app.rb'
 
 # Create an instance of Burger
-
-
-  
-
+String.color_samples 
 ingredients = {"tomato" => 2.00, "cheese" => 1.50, "bacon" => 2.50}
 burger = Burger.new("My custom burger", ingredients)
 choices = []

@@ -13,10 +13,11 @@ class Order
   end
 
   def display
-    print TTY::Box.frame " Your Custom Burger Ingredients "
+    print TTY::Box.frame " Your Custom Burger Ingredients ".light_magenta.on_black
     
-    @order_ingredients.each {|k, v| puts "| " + "#{k.capitalize}"+" "*(16 - k.length)+"... Qtty #{v}"+" " *(6 - v.to_s.length)+"|"}
-    puts "|________________________________|"
+    @order_ingredients.each {|k, v| puts "| ".light_magenta.on_black + "#{k.capitalize}".light_magenta.on_black + " ".light_magenta.on_black * (16 - k.length)+"... Qtty #{v.to_s}".light_magenta.on_black + " ".light_magenta.on_black * (6 - v.to_s.length) + "|".light_magenta.on_black }
+    puts "|________________________________|".light_magenta.on_black
+    
     
     puts
     
