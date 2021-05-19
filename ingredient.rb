@@ -6,7 +6,7 @@ class Ingredient
   end
 
   def to_s
-    return "| "+"#{@name.capitalize}" +" "*(19 - @name.length)+"... $ #{@price}"+" " *(6 - @price.to_s.length)+"|"
+    return "|     "+"#{@name.capitalize}" +" "*(25 - @name.length)+"... $ #{@price}"+" " *(12 - @price.to_s.length)+"|"
   end
 
 end

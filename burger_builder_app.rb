@@ -2,7 +2,7 @@ require_relative './menu.rb'
 require_relative './order.rb'
 
 class Burger
-  attr_reader :name, :menu
+  attr_reader :name, :menu,:order
   def initialize(name, ingredient)
     @name = name
     @menu = Menu.new
@@ -33,7 +33,7 @@ class Burger
     @order.get_ingredients.each do |name, quantity|    
       total += @menu.get_price(name) * quantity
     end
-    print TTY::Box.frame " Custom Burger Order Price ... $ #{total} ".light_magenta.on_blue
+    print TTY::Box.frame " Custom Burger Order Price ... $ #{total} ".light_yellow.on_blue
     puts
     
   end

@@ -12,9 +12,9 @@ class Menu
   end
 
   def display_ingredients
-    print TTY::Box.frame " *** Ingredient Price List ***  ".light_magenta.on_blue
+    print TTY::Box.frame " *** Custom Burger - Ingredient Price List ***  ".light_magenta.on_blue
     @ingredients.each {|item| puts "#{item}".light_magenta.on_blue}
-    puts "|________________________________|".light_magenta.on_blue
+    puts "|________________________________________________|".light_magenta.on_blue
     puts
     return nil   
   end
