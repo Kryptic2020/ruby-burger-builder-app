@@ -12,9 +12,9 @@ class Menu
   end
 
   def display_ingredients
-    print TTY::Box.frame "Ingredient price list"
-    @ingredients.each {|item| puts "|#{item} |"}
-    puts "|_____________________| "
+    print TTY::Box.frame " *** Ingredient Price List ***  "
+    @ingredients.each {|item| puts "#{item}"}
+    puts "|________________________________| "
     puts
     return nil
    
