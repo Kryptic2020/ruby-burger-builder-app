@@ -1,7 +1,7 @@
 require_relative './ingredient.rb'
 require "tty-box"
 class Menu
-  
+  attr_reader :ingredients
   def initialize
     @ingredients = []
   end
@@ -16,8 +16,15 @@ class Menu
     @ingredients.each {|item| puts "#{item}".light_magenta.on_blue}
     puts "|________________________________|".light_magenta.on_blue
     puts
-    return nil
-   
+    return nil   
+  end
+
+  def get_price(name)
+    @ingredients.each do |ingredient|
+      if ingredient.name == name 
+        return ingredient.price.to_f
+      end  
+    end
   end
 
 end

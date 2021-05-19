@@ -16,7 +16,7 @@ class Burger
 
   def populate_menu(ingredient)
     ingredient.each do |name, price|
-      @menu.add_ingredient(name, price)
+      @menu.add_ingredient(name, price.to_f)
     end
   end 
 
@@ -27,6 +27,16 @@ class Burger
   def display_order
     @order.display
   end 
+
+  def display_order_total_amount
+  total = 0
+    @order.get_ingredients.each do |name, quantity|    
+      total += @menu.get_price(name) * quantity
+    end
+    print TTY::Box.frame " Custom Burger Order Price ... $ #{total} ".light_magenta.on_blue
+    puts
+    
+  end
 
   
 
