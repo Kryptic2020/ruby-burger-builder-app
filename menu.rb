@@ -1,4 +1,5 @@
 require_relative './ingredient.rb'
+require "tty-box"
 class Menu
   
   def initialize
@@ -11,12 +12,12 @@ class Menu
   end
 
   def display_ingredients
-    puts "Ingredient price list"
-    puts "_________________"
-    
-    @ingredients.each {|item| puts item}
+    print TTY::Box.frame "Ingredient price list"
+    @ingredients.each {|item| puts "|#{item} |"}
+    puts "|_____________________| "
     puts
     return nil
+   
   end
 
 end

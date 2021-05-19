@@ -6,7 +6,7 @@ class Ingredient
   end
 
   def to_s
-    return "#{@name}" +" "*(10 - @name.length)+"... #{@price}"
+    return " "+"#{@name.capitalize}" +" "*(10 - @name.length)+"... $ #{@price}"
   end
-  
+
 end
