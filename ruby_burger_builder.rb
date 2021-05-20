@@ -23,13 +23,14 @@ ingredients.sort.to_h.each do |key, value|
 end
 choices.push(' Done '.light_white.on_light_blue)
 
+# Display Welcome message
+  burger.art
+
 # Create a loop so the user can keep adding ingredient until he is done
 loop do
   #Gem.win_platform? ? (system "cls") : (system "clear")
 
-  # Display Welcome message
-  #burger.message_frame "Welcome to the #{burger.name} Builder App"
-    burger.art
+  
 
   # Display Ingredient Price List
   burger.print_ingredients
@@ -48,7 +49,7 @@ loop do
     Gem.win_platform? ? (system "cls") : (system "clear")
 
     # Display token for collect and Pay    
-    print burger.order.has_order ? burger.message_warn("Your order number for collect & Pay is #{rand(36**8).to_s(36)}. Enjoy your Custom Burger!") : nil
+    print burger.order.has_order ? burger.message_warn("    ==>    Your order number for collect & Pay is #{rand(36**8).to_s(36)}.     ==>    Total Price $#{burger.order_total_amount}.      ==>      Enjoy your Custom Burger!                            ") : nil
     break
   end
 

@@ -41,12 +41,12 @@ class Burger
     message_info(" Custom Burger Order Price ... $ #{order_total_amount.round(2)} ")    
   end
 
-  def message_warn(message)
-    print TTY::Box.warn message.light_white.on_light_blue
+  def message_warn( message)
+    print TTY::Box.warn(message.light_white.on_light_blue, width: TTY::Screen.width)
   end
 
   def message_success(message)
-    print TTY::Box.success message.light_white.on_light_blue
+    print TTY::Box.success message.light_white.on_light_blue,width: TTY::Screen.width,padding: 2 , align: :center
   end
 
   def message_frame(message)
@@ -64,7 +64,7 @@ class Burger
     puts a.asciify('Burger Builder')
     puts
     puts
-    puts TTY::Box.frame(" ====== PRESS 'ENTER' TO CONTINUE ======",width: TTY::Screen.width,padding: 3, align: :center).light_white.on_light_blue.blink
+    puts TTY::Box.frame(" ====== PRESS 'ENTER' TO CONTINUE ======",width: TTY::Screen.width,padding: 2, align: :center).light_white.on_light_blue.blink
     puts
     puts
     puts
