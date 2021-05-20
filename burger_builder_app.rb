@@ -33,7 +33,7 @@ class Burger
     @order.get_ingredients.each do |name, quantity|    
       total += @menu.get_price(name) * quantity
     end
-    print TTY::Box.frame " Custom Burger Order Price ... $ #{total} ".light_yellow.on_blue
+    print TTY::Box.frame " Custom Burger Order Price ... $ #{total.round(2)} ".light_yellow.on_blue
     puts
     
   end
