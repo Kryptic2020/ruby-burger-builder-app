@@ -13,7 +13,7 @@ class WrongInputError < StandardError
 end
 
 # Create an instance of Burger
-ingredients = {"fish" => 2.00,"chicken" => 2.00,"salad" => 0.70,"tomato" => 2.00, "cheese" => 1.50, "bacon" => 2.50,"egg" => 1.20,"onion" => 2.10,}
+ingredients = {"fish" => 2.00,"chicken" => 2.00,"salad" => 0.70,"tomato" => 2.00, "cheese" => 1.50, "bacon" => 2.50,"egg" => 1.20,"beef" => 2.10,}
 burger = Burger.new("Custom Burger", ingredients.sort.to_h)
 
 # Create list of ingredient Options 
