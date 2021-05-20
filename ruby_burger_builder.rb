@@ -5,6 +5,7 @@ require "colorize"
 require 'colorized_string'
 prompt = TTY::Prompt.new
 
+
 # Create class for handling error when input is not a valid 
 class EmptyInputError < StandardError
 end
@@ -27,7 +28,8 @@ loop do
   #Gem.win_platform? ? (system "cls") : (system "clear")
 
   # Display Welcome message
-  burger.message_frame "Welcome to the #{burger.name} Builder App"
+  #burger.message_frame "Welcome to the #{burger.name} Builder App"
+    burger.art
 
   # Display Ingredient Price List
   burger.print_ingredients

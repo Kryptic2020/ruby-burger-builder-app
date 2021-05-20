@@ -10,3 +10,4 @@ gem "rspec", "~> 3.10"
 gem "tty-prompt"
 gem "tty-box"
 gem "colorize"
+gem 'artii', '~> 2.1', '>= 2.1.2'
