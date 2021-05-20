@@ -11,3 +11,4 @@ gem "tty-prompt"
 gem "tty-box"
 gem "colorize"
 gem 'artii', '~> 2.1', '>= 2.1.2'
+gem 'tty-screen'
