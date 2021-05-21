@@ -15,10 +15,12 @@ class Order
      @order_ingredients[name] += quantity
   end
 
+  #get ingredients from order
   def get_order_ingredients    
     return @order_ingredients
   end
 
+  #Display order
   def display
     puts
     print message_frame(" Your Custom Burger - Selected Ingredients ") 

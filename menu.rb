@@ -9,11 +9,13 @@ class Menu
     @ingredients = []
   end
 
+  #Add ingredients to Menu
   def add_ingredient(name, price)
     ingredient = Ingredient.new(name, price)
     @ingredients << ingredient
   end
 
+  #Display Menu
   def display_ingredients
     print message_magenta(" *** Custom Burger - Ingredient Price List ***  ")
     rows = []
@@ -23,10 +25,10 @@ class Menu
     end
     table = TTY::Table.new(rows)
     print "#{table.render(:unicode, width: TTY::Screen.width, resize: true)}".light_magenta.on_blue   
-    
     return nil   
   end
 
+  #Get ingredient Price
   def get_price(name)
     @ingredients.each do |ingredient|
       if ingredient.name == name

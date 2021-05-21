@@ -29,10 +29,7 @@ choices.push(' Done '.black.on_light_white)
   art()
 
 # Create a loop so the user can keep adding ingredient until he is done
-loop do
-  #Gem.win_platform? ? (system "cls") : (system "clear")
-
-  
+loop do  
 
   # Display Ingredient Price List
   burger.print_ingredients
@@ -51,7 +48,7 @@ loop do
   if input == ' Done '.black.on_light_white
     Gem.win_platform? ? (system "cls") : (system "clear")
 
-    # Display token for collect and Pay  
+    # Display token and price for collect and Pay  
       rows = []
       rows << ["   ==>  Your order number for collect & Pay is " + "#{rand(36**8).to_s(36)}".bold]
       rows << ["   ==>  Total Price " + "$#{burger.order_total_amount.round(2)}.".bold]
@@ -60,6 +57,11 @@ loop do
     message = "#{table.render(:unicode, width: TTY::Screen.width, resize: true)}".black.on_light_yellow
     puts
     print burger.order.has_order ? message : nil
+    puts
+    puts
+    puts
+    puts
+    puts
     puts
     break
   end
@@ -78,6 +80,7 @@ loop do
     puts " #{quantity} is not a valid input, please insert only numbers greater than zero" if quantity.to_i == 0 && quantity != ""
     retry
   end
+  
   # Adding ingredients to the order
   if quantity
     burger.add_to_order(input.downcase.uncolorize, quantity.to_i) 
