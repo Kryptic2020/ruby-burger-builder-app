@@ -1,8 +1,10 @@
 require_relative './burger_builder_app.rb'
+require_relative './styles.rb'
 require "tty-prompt"
 require "tty-box"
 require "colorize"
 require 'colorized_string'
+require "tty-table"
 prompt = TTY::Prompt.new
 
 
@@ -19,12 +21,12 @@ burger = Burger.new("Custom Burger", ingredients.sort.to_h)
 # Create list of ingredient Options 
 choices = []
 ingredients.sort.to_h.each do |key, value|
-  choices << key.capitalize
+  choices << key.capitalize.light_white.on_light_blue
 end
-choices.push(' Done '.light_white.on_light_blue)
+choices.push(' Done '.black.on_light_white)
 
 # Display Welcome message
-  burger.art
+  art()
 
 # Create a loop so the user can keep adding ingredient until he is done
 loop do
@@ -40,22 +42,31 @@ loop do
 
   # Display Order Total Amount  
   burger.order.has_order ? burger.display_order_total_amount : nil 
-  
+  puts 
+
   # Display Ingredient Select Options  
-  input = prompt.select(burger.message_frame("Which ingredient would you like to add to your Custom Burger?") , choices,per_page: 50,symbols: { marker: "==>" })
+  input = prompt.select(message_frame("Which ingredient would you like to add to your Custom Burger?") , choices,per_page: 50,symbols: { marker: "=>".blue.on_light_green.bold })
 
   #Break the loop is user is done
-  if input == ' Done '.light_white.on_light_blue
+  if input == ' Done '.black.on_light_white
     Gem.win_platform? ? (system "cls") : (system "clear")
 
-    # Display token for collect and Pay    
-    print burger.order.has_order ? burger.message_warn("    ==>    Your order number for collect & Pay is #{rand(36**8).to_s(36)}.     ==>    Total Price $#{burger.order_total_amount}.      ==>      Enjoy your Custom Burger!                            ") : nil
+    # Display token for collect and Pay  
+      rows = []
+      rows << ["   ==>  Your order number for collect & Pay is " + "#{rand(36**8).to_s(36)}".bold]
+      rows << ["   ==>  Total Price " + "$#{burger.order_total_amount.round(2)}.".bold]
+      rows << ["   ==>  Enjoy your Custom Burger!".bold]    
+    table = TTY::Table.new(rows)
+    message = "#{table.render(:unicode, width: TTY::Screen.width, resize: true)}".black.on_light_yellow
+    puts
+    print burger.order.has_order ? message : nil
+    puts
     break
   end
 
   # Display quantity input request
   begin
-    burger.message_frame "How many would you like?"
+    message_frame "How many would you like?"
     quantity = gets.strip
 
     # Handling errors
@@ -69,10 +80,10 @@ loop do
   end
   # Adding ingredients to the order
   if quantity
-    burger.add_to_order(input.downcase, quantity.to_i) 
+    burger.add_to_order(input.downcase.uncolorize, quantity.to_i) 
   end
    
 end
 
 # Display Thanks message 
-burger.order.has_order ? nil : burger.message_success("Thank you for visiting our Burger Builder App!!!")
+burger.order.has_order ? nil : message_success("Thank you for visiting our Burger Builder App!!!")
