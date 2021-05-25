@@ -34,6 +34,11 @@ class Burger
     @order.display
   end 
 
+  #Clear order
+  def clear_order
+    @order.clear_order
+  end 
+
   #Get order total amount
   def order_total_amount
     total = 0
@@ -46,6 +51,6 @@ class Burger
   #Display order total amount
   def display_order_total_amount
     message_info(" Custom Burger Order Price ... $ #{order_total_amount.round(2)} ") 
-  end
+  end  
 
 end

@@ -17,13 +17,15 @@ end
 # Create an instance of Burger
 ingredients = {"fish" => 2.00,"chicken" => 2.00,"salad" => 0.70,"tomato" => 2.00, "cheese" => 1.50, "bacon" => 2.50,"egg" => 1.20,"beef" => 2.10,}
 burger = Burger.new("Custom Burger", ingredients.sort.to_h)
+puts .to_s
 
 # Create list of ingredient Options 
 choices = []
-ingredients.sort.to_h.each do |key, value|
-  choices << key.capitalize.light_white.on_light_blue
+burger.menu.get_ingredients.sort.each do |key|
+  choices << key.to_s.capitalize.light_white.on_light_blue
 end
 choices.push(' Done '.black.on_light_white)
+choices.push(' Clear Order '.red.on_white)
 
 # Display Welcome message
   art()
@@ -41,22 +43,33 @@ loop do
   burger.order.has_order ? burger.display_order_total_amount : nil 
   puts 
 
-  # Display Ingredient Select Options  
-  input = prompt.select(message_frame("Which ingredient would you like to add to your Custom Burger?") , choices,per_page: 50,symbols: { marker: "=>".blue.on_light_green.bold })
+  # Display Ingredient Select Options   
+  text = []
+  text << ["     Which ingredient would you like to add to your Custom Burger?".bold]
+  text << ["        Select one item to continue or;"]
+  text << ["        Select 'Done' to finish shopping or;"]
+  text << ["        Select 'Clear Order' to erase the current Order"]
+  input = prompt.select(table(text).light_white.on_light_blue , choices,per_page: 50,symbols: { marker: "=>".blue.on_light_green.bold }) 
+  
+  # Clear ordered item when clear order is selected
+  if input == ' Clear Order '.red.on_white
+    burger.clear_order
+  else
 
   #Break the loop is user is done
   if input == ' Done '.black.on_light_white
     Gem.win_platform? ? (system "cls") : (system "clear")
 
-    # Display token and price for collect and Pay  
+    # Display token, price and instructions for collect and Pay  
       rows = []
       rows << ["   ==>  Your order number for collect & Pay is " + "#{rand(36**8).to_s(36)}".bold]
-      rows << ["   ==>  Total Price " + "$#{burger.order_total_amount.round(2)}.".bold]
-      rows << ["   ==>  Enjoy your Custom Burger!".bold]    
-    table = TTY::Table.new(rows)
-    message = "#{table.render(:unicode, width: TTY::Screen.width, resize: true)}".black.on_light_yellow
+      rows << ["   ==>  Total Price " + "$#{burger.order_total_amount.round(2)}.".bold]      
+      rows << ["   ==>  Please head to the collect & Pay counter".bold] 
+      rows << ["   ==>  Inform your order number to proceed with the payment".bold] 
+      rows << ["   ==>  Collect your order. Enjoy your Custom Burger!".bold]   
+    message = table(rows)    
     puts
-    print burger.order.has_order ? message : nil
+    print burger.order.has_order ? message.black.on_light_yellow : nil
     puts
     puts
     puts
@@ -68,10 +81,10 @@ loop do
 
   # Display quantity input request
   begin
-    message_frame "How many would you like?"
+    message_frame "How many"+" #{input}s".bold + " would you like? Please insert the quantity and Enter."
     quantity = gets.strip
 
-    # Handling errors
+    # Handle errors on the quantity inputted value
     raise EmptyInputError, "Empty input Error" if quantity == ""
     raise WrongInputError, "wrong input Error" if quantity.to_i == 0 
     rescue 
@@ -84,6 +97,8 @@ loop do
   # Adding ingredients to the order
   if quantity
     burger.add_to_order(input.downcase.uncolorize, quantity.to_i) 
+  end
+
   end
    
 end

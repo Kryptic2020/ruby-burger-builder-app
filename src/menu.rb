@@ -37,4 +37,13 @@ class Menu
     end
   end
 
+  #Get ingredient Name
+  def get_ingredients
+    list = []
+    @ingredients.each do |ingredient|
+      list << ingredient.name
+    end
+    return list         
+  end
+
 end

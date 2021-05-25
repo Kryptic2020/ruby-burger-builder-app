@@ -15,6 +15,11 @@ class Order
      @order_ingredients[name] += quantity
   end
 
+  def clear_order
+    @order_ingredients = Hash.new(0)
+    @has_order = false
+  end
+
   #get ingredients from order
   def get_order_ingredients    
     return @order_ingredients

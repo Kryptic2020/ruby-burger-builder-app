@@ -58,3 +58,8 @@
     #print "\r" + ("\e[A\e[K"*6)
     Gem.win_platform? ? (system "cls") : (system "clear")
   end 
+
+  def table(rows)
+    table = TTY::Table.new(rows)
+    message = "#{table.render(:unicode, width: TTY::Screen.width, resize: true, alignment: [:left])}"
+  end
